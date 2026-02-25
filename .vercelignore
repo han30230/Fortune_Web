@@ -1,0 +1,9 @@
+# Dependencies (Vercel installs from package.json)
+node_modules
+.next
+
+# Local / IDE
+.env*.local
+.cursor
+*.log
+.DS_Store
