@@ -4,7 +4,8 @@ import { useState, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { FortuneForm } from "@/components/forms/FortuneForm";
 import { DummyResultSection } from "@/components/results/DummyResultSection";
-import { DummyCompatibilityResult } from "@/components/results/DummyCompatibilityResult";
+import { CompatibilityFreeSummary } from "@/components/results/CompatibilityFreeSummary";
+import { CompatibilityPaidSection } from "@/components/results/CompatibilityPaidSection";
 import { RelatedLinks } from "@/components/service/RelatedLinks";
 import { dummyCompatibilityData } from "@/data/dummyCompatibility";
 import type { FortuneFormValues } from "@/types/fortune";
@@ -30,9 +31,18 @@ function CompatibilityPageContent() {
         <FortuneForm serviceId="compatibility" onSuccess={handleSuccess} />
       </div>
       {showResult && (
-        <DummyResultSection title="궁합 결과">
-          <DummyCompatibilityResult data={dummyCompatibilityData} />
-        </DummyResultSection>
+        <>
+          <DummyResultSection title="무료 요약">
+            <div className="space-y-4">
+              <CompatibilityFreeSummary data={dummyCompatibilityData} />
+            </div>
+          </DummyResultSection>
+          <DummyResultSection title="상세 분석 (유료)">
+            <div className="space-y-4">
+              <CompatibilityPaidSection />
+            </div>
+          </DummyResultSection>
+        </>
       )}
       <RelatedLinks currentPath="/compatibility" />
     </div>
